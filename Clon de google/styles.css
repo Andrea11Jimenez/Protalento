@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    min-width: 100vh;
+    height: 100%;
+}
+
+input:hover {
+    border: 1px solid #ccc;
+}
+
+.btn-search:hover {
+    background-color: #f1f1f1;
+}
+
+header img{
+    position: absolute;
+    top: 5%;
+    right: 70px;
+}
+footer{
+    position: absolute;
+    top: 95%;
+    left: 76%;
+    height: 20px;
+}
+
+
+main input{
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    font-size: 18px;
+    color: gray;
+    height: 20px;
+    width: 400px;
+}
+ 
+.btn-search {
+    position: absolute;
+    top: 50%;
+    left: 650px;
+}
+
+.btn-search1 {
+    position: absolute;
+    top: 50%;
+    left: 500px;
+}
+
+.imagen1 {
+    position: absolute;
+    top: 10%;
+    left: 400px;
+}
+
+.imagen2 {
+    position: absolute;
+    top: 45%;
+    left: 67%;
+} 
