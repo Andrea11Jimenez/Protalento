@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cajero Automático</title>
+</head>
+<body>
+  <h1>Cajero Automático</h1>
+  <select id="cuentas">
+    <option value="0">Persona 1</option>
+    <option value="1">Persona 2</option>
+    <option value="2">Persona 3</option>
+  </select>
+  <br><br>
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="seleccionarCuenta()">Ingresar</button>
+  <div id="operaciones" style="display: none;">
+    <h2>Operaciones</h2>
+    <button onclick="consultarSaldo()">Consultar Saldo</button>
+    <button onclick="ingresarMonto()">Ingresar Monto</button>
+    <button onclick="retirarMonto()">Retirar Monto</button>
+  </div>
+  <div id="resultados" style="display: none;">
+    <h2>Resultados</h2>
+    <p id="mensaje"></p>
+    <p id="saldo"></p>
+  </div>
+  <script>
+    var cuentas = [
+      { nombre: "Mali", saldo: 200 },
+      { nombre: "Gera", saldo: 290 },
+      { nombre: "Maui", saldo: 67 }
+    ];
+    
+    var selectedAccount = -1;
+    
+    function seleccionarCuenta() {
+      selectedAccount = parseInt(document.getElementById("cuentas").value);
+      var password = document.getElementById("password").value;
+      
+      if (password === "1234") { 
+        document.getElementById("operaciones").style.display = "block";
+      } else {
+        alert("Contraseña incorrecta. Inténtalo nuevamente.");
+      }
+    }
+    
+    function consultarSaldo() {
+      mostrarResultados(`Saldo actual: $${cuentas[selectedAccount].saldo}`);
+    }
+    
+    function ingresarMonto() {
+      var monto = parseFloat(prompt("Ingresa el monto a ingresar:"));
+      
+      if (!isNaN(monto)) {
+        if (monto > 0) {
+          cuentas[selectedAccount].saldo += monto;
+          mostrarResultados(`Monto ingresado: $${monto}\nNuevo saldo: $${cuentas[selectedAccount].saldo}`);
+        } else {
+          alert("Ingresa un monto válido.");
+        }
+      } else {
+        alert("Ingresa un valor numérico válido.");
+      }
+    }
+    
+    function retirarMonto() {
+      var monto = parseFloat(prompt("Ingresa el monto a retirar:"));
+      
+      if (!isNaN(monto)) {
+        if (monto > 0 && monto <= cuentas[selectedAccount].saldo && cuentas[selectedAccount].saldo - monto >= 10) {
+          cuentas[selectedAccount].saldo -= monto;
+          mostrarResultados(`Monto retirado: $${monto}\nNuevo saldo: $${cuentas[selectedAccount].saldo}`);
+        } else {
+          alert("Monto inválido o saldo insuficiente.");
+        }
+      } else {
+        alert("Ingresa un valor numérico válido.");
+      }
+    }
+    
+    function mostrarResultados(mensaje) {
+      document.getElementById("mensaje").textContent = mensaje;
+      document.getElementById("saldo").textContent = `Saldo actual: $${cuentas[selectedAccount].saldo}`;
+      document.getElementById("resultados").style.display = "block";
+    }
+  </script>
+</body>
+</html>
